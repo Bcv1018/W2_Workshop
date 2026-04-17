@@ -1,0 +1,126 @@
+================================================================
+     LANA'S DOG WALKING BUSINESS — DATABASE DESIGN
+                  Group Project Reference
+================================================================
+
+
+----------------------------------------------------------------
+ENTITIES & ATTRIBUTES
+----------------------------------------------------------------
+
+CUSTOMER INFO
+  PK  CustomerID
+      Name
+      Address
+      Phone Number
+      Payment Method
+
+PET INFO
+  PK  PetID
+  FK  CustomerID
+      Pet Name
+      Pet Breed
+      Pet Color
+
+SERVICES / CHARGES
+  PK  SessionID
+  FK  CustomerID
+  FK  PetID
+      Session Date
+      Session Rate
+      Session Qty
+      (Cost = Session Rate x Session Qty)
+
+
+----------------------------------------------------------------
+ENTITY RELATIONSHIP DIAGRAM (ERD)
+----------------------------------------------------------------
+
+  +------------------+          +------------------+
+  |  CUSTOMER INFO   |          |    PET INFO      |
+  +------------------+          +------------------+
+  | PK CustomerID    | 1      M | PK PetID         |
+  |    Name          |----------| FK CustomerID    |
+  |    Address       |          |    Pet Name      |
+  |    Phone Number  |    +-----| Pet Breed        |
+  |    Payment Method|    |     |    Pet Color     |
+  +------------------+    |     +------------------+
+           |              |
+           | 1            | 1
+           |              |
+           | M            | M
+  +------------------+    |
+  | SERVICES/CHARGES |----+
+  +------------------+
+  | PK SessionID     |
+  | FK CustomerID    |
+  | FK PetID         |
+  |    Session Date  |
+  |    Session Rate  |
+  |    Session Qty   |
+  |   (Cost derived) |
+  +------------------+
+
+  Legend:
+    PK  = Primary Key
+    FK  = Foreign Key
+    1   = "One" side of relationship
+    M   = "Many" side of relationship
+    ( ) = Calculated/derived field, not stored
+
+
+----------------------------------------------------------------
+CARDINALITY RELATIONSHIPS
+----------------------------------------------------------------
+
+1. CUSTOMER --> PET INFO          [ One-to-Many (1:M) ]
+   One customer can own one or more pets.
+   Each pet belongs to exactly one customer.
+   Linked by: CustomerID (FK in Pet Info)
+
+2. CUSTOMER --> SERVICES/CHARGES  [ One-to-Many (1:M) ]
+   One customer can have many walking sessions over time.
+   Each session ties back to exactly one customer.
+   Linked by: CustomerID (FK in Services)
+
+3. PET INFO --> SERVICES/CHARGES  [ One-to-Many (1:M) ]
+   One pet can have many walking sessions over time.
+   Each session ties back to exactly one pet.
+   Linked by: PetID (FK in Services)
+
+4. OVERALL STRUCTURE
+   Customer is the central PARENT entity.
+   Pet Info and Services are both CHILD entities.
+   Services now links to BOTH Customer and Pet Info.
+
+   PET INFO ---(M)--+
+                    |
+               SERVICES/CHARGES
+                    |
+   CUSTOMER --(1)--+
+
+
+----------------------------------------------------------------
+NOTES ON CHANGES MADE
+----------------------------------------------------------------
+
+1. Added PetID (FK) to Services/Charges
+   Sessions now record which specific pet was walked, not just
+   which customer was charged.
+
+2. Added Session Date to Services/Charges
+   Lana can now track when each walk took place for scheduling,
+   invoicing, and record history.
+
+3. Cost changed to a derived/calculated field
+   Cost is computed as Session Rate x Session Qty and is no
+   longer stored directly to avoid inconsistencies.
+
+4. "Payment" renamed to "Payment Method"
+   Clarified to represent how the customer pays (cash, card,
+   Venmo, etc.) and stays as a simple attribute on Customer.
+
+
+================================================================
+                       END OF DOCUMENT
+================================================================
