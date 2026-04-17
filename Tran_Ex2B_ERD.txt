@@ -1,0 +1,54 @@
+Customer Info → Pet Info = 1:M
+Pet Info → Services = 1:M
++----------------------+                               
+|    Customer Info     |
++----------------------+
+| PK CustomerID        |
+| Name                 |
+| Address              |
+| PaymentMethod        |
+| PhoneNumber          |
++----------------------+
+        | 1
+        |
+        |------< M
++----------------------+
+|       Pet Info       |
++----------------------+
+| PK PetID             |
+| FK CustomerID        |
+| PetName              |
+| PetBreed             |
+| PetColor             |
++----------------------+
+        | 1
+        |
+        |------< M
++----------------------+
+|       Services       |
++----------------------+
+| PK SessionID         |
+| FK PetID             |
+| SessionRate          |
+| SessionQty           |
+| Cost                 |
++----------------------+
+Feedback:
+
+Session Rate and Cost may be redundant depending on what they mean.
+If Cost = SessionRate × SessionQty, then Cost is a calculated value and usually does not need to be stored.
+You may also want a ServiceType field, such as:
+30-minute walk
+60-minute walk
+pet sitting
+
+Better option
+
+Add PetID as a foreign key in Services if each session is for one specific pet
+
+Feedback:
+
+Payment is a little unclear.
+It would be better to rename it to something like:
+PaymentMethod if it stores cash, card, Venmo, etc.
+or create a separate payment table later if you want to track actual transactions
