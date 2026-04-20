@@ -24,7 +24,7 @@ CREATE TABLE PetInfo (
 );
 
 -- Services/charges Table
-CREATE TABLE ServicesCharges (
+CREATE TABLE Services (
     SessionID INT NOT NULL AUTO_INCREMENT,
     CustomerID INT NOT NULL,
     PetID INT NOT NULL,
