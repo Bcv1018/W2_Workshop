@@ -35,9 +35,7 @@ a) What are the similarities between individual diagrams? What turned out the sa
 b) Where did each of your diagrams differ? What explanation do you have for those
 differences? What might be the pros and cons of each approach?
 
-    Brandon and Edmund removed cost from their diagrams, and for everyone else's it kept the cost column, and also had him add petid foreign key to the services.
-
-    For everyone else's they stayed the same.
+    Brandon and Edmund removed cost from their diagrams, and for everyone else's it kept the cost column, and also had him add petID foreign key to the services. For Kevin and Luis they stayed the same.
 
     Removing the cost tab was trying to be as efficient as possible and save space.
     Adding the PetID FK was just making more relationship between tables and future proofing any problems that may occur in the future in terms of making sure the pet and customer are correct in the service table.
@@ -62,9 +60,16 @@ in the W2_Workshop repository.
 b) How does your sample data look? What things can you start to determine about this
 business, based on the sample records you’ve created?
 
-
+    The sample data given seems to fit the description of all the columns perfectly. You can tell where the business is likely
+    located with the addresses displayed, such as San Mateo for Edmund's sample data. The business seems to charge more
+    for the first hour of a session, and the cost to time ratio is cheaper the longer a session is. They also accept a wide
+    variety of breeds such as huskys and bulldogs.
 
 c.)Everyone in your small group started from the same brainstorming document. After
 working independently on implementation, how different have your databases
 turned out? What are the most notable differences?
 
+    Our databases turned out pretty similar to each other, as there wasn't too much variation with how
+    our AI's generated our models. Even the generated samples are quite similar, with costs, location being in the Bay Area.
+    The most notable differences are columns that are new or missing from tables, such as 'SessionDate', or using 'SessionQty'
+    instead of 'Duration' to determine costs.
