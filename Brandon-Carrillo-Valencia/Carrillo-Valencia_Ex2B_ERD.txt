@@ -22,7 +22,7 @@ PET INFO
       Pet Breed
       Pet Color
 
-SERVICES / CHARGES
+SERVICES 
   PK  SessionID
   FK  CustomerID
   FK  PetID
@@ -50,7 +50,7 @@ ENTITY RELATIONSHIP DIAGRAM (ERD)
            |              |
            | M            | M
   +------------------+    |
-  | SERVICES/CHARGES |----+
+  | SERVICES         |----+
   +------------------+
   | PK SessionID     |
   | FK CustomerID    |
@@ -78,12 +78,12 @@ CARDINALITY RELATIONSHIPS
    Each pet belongs to exactly one customer.
    Linked by: CustomerID (FK in Pet Info)
 
-2. CUSTOMER --> SERVICES/CHARGES  [ One-to-Many (1:M) ]
+2. CUSTOMER --> SERVICES  [ One-to-Many (1:M) ]
    One customer can have many walking sessions over time.
    Each session ties back to exactly one customer.
    Linked by: CustomerID (FK in Services)
 
-3. PET INFO --> SERVICES/CHARGES  [ One-to-Many (1:M) ]
+3. PET INFO --> SERVICES/ [ One-to-Many (1:M) ]
    One pet can have many walking sessions over time.
    Each session ties back to exactly one pet.
    Linked by: PetID (FK in Services)
@@ -104,11 +104,11 @@ CARDINALITY RELATIONSHIPS
 NOTES ON CHANGES MADE
 ----------------------------------------------------------------
 
-1. Added PetID (FK) to Services/Charges
+1. Added PetID (FK) to Services
    Sessions now record which specific pet was walked, not just
    which customer was charged.
 
-2. Added Session Date to Services/Charges
+2. Added Session Date to Services
    Lana can now track when each walk took place for scheduling,
    invoicing, and record history.
 
